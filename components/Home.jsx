@@ -1,22 +1,46 @@
-import * as React from 'react'
-import { Text, View } from 'react-native';
-import { ScrollView } from 'react-native-gesture-handler';
-import CharacterCard from './CharacterCard';
+import * as React from "react";
+import { ActivityIndicator, FlatList, Text, View } from "react-native";
+import { ScrollView } from "react-native-gesture-handler";
+import CharacterCard from "./CharacterCard";
+import apiParams from "../configAPI";
+import axios from "axios";
 
 const Home = () => {
-  return (
-    <ScrollView>
-      <Text>Aqui es el Home</Text>
-      <CharacterCard 
-      image={require("../assets/BlackWidow.png")}
-      name="BlackWidow"
-      />
-      <CharacterCard 
-      image={require("../assets/Captain.png")}
-      name="Captain"
-      />
-    </ScrollView>
-  )
-}
+  const [isLoading, setLoading] = React.useState(true);
+  const [data, setData] = React.useState([]);
+  const { ts, apikey, hash, baseURL } = apiParams;
 
-export default Home
+  React.useEffect(() => {
+    axios
+      .get(`${baseURL}/v1/public/characters`, {
+        params: {
+          ts,
+          apikey,
+          hash,
+        },
+      })
+      .then((response) => setData(response.data.data.results))
+      .catch((error) => console.error(error))
+      .finally(() => setLoading(false));
+  }, []);
+
+
+  return (
+    <View>
+      {isLoading ? <ActivityIndicator size="large" color="#00ff00" /> : (
+        <FlatList 
+        data={data}
+        keyExtractor={({id}) => id.toString()}
+        renderItem={({item}) => (
+          <CharacterCard 
+          image={`${item?.thumbnail?.path}.${item?.thumbnail.extension}`} 
+          name={item?.name}
+          />
+        )}
+        />
+      )}
+    </View>
+  );
+};
+
+export default Home;

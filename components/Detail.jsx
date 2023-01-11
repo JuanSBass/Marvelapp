@@ -10,7 +10,7 @@ const Detail = () => {
   return (
     <Tab.Navigator
       initialRouteName="Information"
-      tabBarOptions={{
+      screenOptions={{
         activeTintColor: "darkred",
       }}
     >
