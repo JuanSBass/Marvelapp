@@ -8,3 +8,5 @@ const Comics = () => {
     </View>
   )
 };
+
+export default Comics;
