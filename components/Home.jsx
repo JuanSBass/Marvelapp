@@ -24,22 +24,24 @@ const Home = () => {
       .finally(() => setLoading(false));
   }, []);
 
+  // console.log(data[0].thumbnail.path);
 
   return (
-    <View>
+    <ScrollView>
       {isLoading ? <ActivityIndicator size="large" color="#00ff00" /> : (
         <FlatList 
         data={data}
         keyExtractor={({id}) => id.toString()}
         renderItem={({item}) => (
           <CharacterCard 
-          image={`${item?.thumbnail?.path}.${item?.thumbnail.extension}`} 
+          image={`${item?.thumbnail?.path}.${item?.thumbnail.extension}`}
+          // image={"http://i.annihil.us/u/prod/marvel/i/mg/3/20/5232158de5b16.jpg"}
           name={item?.name}
           />
         )}
         />
       )}
-    </View>
+    </ScrollView>
   );
 };
 
