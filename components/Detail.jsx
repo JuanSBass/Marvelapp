@@ -63,13 +63,21 @@ const Detail = ({ route }) => {
       </Tab.Screen>
       <Tab.Screen
         name="Comics"
-        component={Comics}
         options={{
           tabBarIcon: ({ color, size }) => (
             <MaterialComunityIcons name="book" color={color} size={size} />
           ),
         }}
-      />
+      >
+
+        {() => 
+          isLoading ? <ActivityIndicator size={large} color="#00ff00" /> 
+          : <Comics 
+          listComics={data?.comics?.items}
+          />
+        }
+
+      </Tab.Screen>
     </Tab.Navigator>
   );
 };
