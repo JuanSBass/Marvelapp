@@ -38,6 +38,7 @@ const Comics = ({ listComics }) => {
           data={data}
           keyExtractor={({ id }) => id.toString()}
           horizontal
+          pagingEnabled
           renderItem={({ item }) => (
             <Comic
               key={item.id}

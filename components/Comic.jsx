@@ -18,19 +18,19 @@ const styles = StyleSheet.create({
   container: {
     marginHorizontal: 20,
     alignItems: "center",
-    borderStyle: "solid",
     justifyContent: "center",
+
   },
 
   title: {
     fontSize: 22,
     textAlign: "center",
-    maxWidth: "70%"
+    maxWidth: 320
   },
 
   imagen: {
-    width: 300,
-    height: "85%",
+    width: 320,
+    height: 450,
     borderRadius: 10,
   },
 });
