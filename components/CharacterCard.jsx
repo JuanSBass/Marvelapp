@@ -29,8 +29,8 @@ const styles = StyleSheet.create({
   },
 
   font: {
-    color: "#542516",
     fontSize: 24,
+    fontWeight: "bold",
   },
 
   imagen: {

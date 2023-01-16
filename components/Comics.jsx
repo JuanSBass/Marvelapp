@@ -31,7 +31,7 @@ const Comics = ({ listComics }) => {
   return (
     <View style={{  flex: 1 }}>
       {isLoading ? (
-        <ActivityIndicator size="large" color="#00ff00" />
+        <ActivityIndicator size="large" color="#000" />
       ) : (
         <FlatList
           contentContainerStyle={{ alignItems: "center"}}

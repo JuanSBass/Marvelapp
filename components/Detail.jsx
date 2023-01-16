@@ -5,7 +5,8 @@ import Information from "./Information";
 import Comics from "./Comics";
 import apiParams from "../configAPI";
 import axios from "axios";
-import { ActivityIndicator } from "react-native";
+import { ActivityIndicator, Button } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 
 const Tab = createBottomTabNavigator();
 
@@ -13,6 +14,8 @@ const Detail = ({ route }) => {
   const [isLoading, setLoading] = useState(true);
   const [data, setData] = useState([]);
   const { ts, apikey, hash, baseURL } = apiParams;
+  const navigation = useNavigation();
+  const goHome = () => navigation.goBack();
 
   useEffect(() => {
     axios
@@ -34,12 +37,19 @@ const Detail = ({ route }) => {
       initialRouteName="Information"
       screenOptions={{
         activeTintColor: "darkred",
+        headerRight: () => (
+              <Button
+                title="HOME"
+                color="#000"
+                onPress={goHome}
+              />
+            )
       }}
     >
       <Tab.Screen
         name="Information"
         options={{
-          title: `${data.name}}`,
+          // title: `${data.name}`,
           tabBarIcon: ({ color, size }) => (
             <MaterialComunityIcons
               name="information-circle"
@@ -51,7 +61,7 @@ const Detail = ({ route }) => {
       >
         {() =>
           isLoading ? (
-            <ActivityIndicator size="large" color="00ff00" />
+            <ActivityIndicator size="large" color="#000" />
           ) : (
             <Information
               image={`${data?.thumbnail?.path}.${data?.thumbnail.extension}`}
@@ -71,7 +81,7 @@ const Detail = ({ route }) => {
       >
 
         {() => 
-          isLoading ? <ActivityIndicator size={large} color="#00ff00" /> 
+          isLoading ? <ActivityIndicator size={large} color="#000" /> 
           : <Comics 
           listComics={data?.comics?.items}
           />

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { ActivityIndicator, FlatList, Text, View } from "react-native";
+import { ActivityIndicator, FlatList, ImageBackground } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
 import CharacterCard from "./CharacterCard";
 import apiParams from "../configAPI";
@@ -29,7 +29,10 @@ const Home = () => {
   const searchCharacter = () => {
     if (search) {
       // setLoading(true);
-      axios.get(`${baseURL}/v1/public/characters?nameStartsWith=${search}&ts=${ts}&apikey=${apikey}&hash=${hash}`)
+      axios
+        .get(
+          `${baseURL}/v1/public/characters?nameStartsWith=${search}&ts=${ts}&apikey=${apikey}&hash=${hash}`
+        )
         .then((response) => setData(response.data.data.results))
 
         .catch((error) => console.error(error))
@@ -40,13 +43,14 @@ const Home = () => {
   return (
     <ScrollView>
       {isLoading ? (
-        <ActivityIndicator size="large" color="#00ff00" />
+        <ActivityIndicator size="large" color="#000" />
       ) : (
         <>
           <SearchBar
-            lightTheme
+            textAlign="center"
+            textContentType="light"
             platform="android"
-            placeholder="Busca a tu personaje"
+            placeholder="Searh your character"
             onChangeText={(value) => setSearch(value)}
             value={search}
             onKeyPress={searchCharacter}
