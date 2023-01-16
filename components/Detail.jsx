@@ -7,6 +7,7 @@ import apiParams from "../configAPI";
 import axios from "axios";
 import { ActivityIndicator, Button } from "react-native";
 import { useNavigation } from "@react-navigation/native";
+import { View } from "react-native";
 
 const Tab = createBottomTabNavigator();
 
@@ -31,19 +32,16 @@ const Detail = ({ route }) => {
       .finally(() => setLoading(false));
   }, []);
 
-
   return (
     <Tab.Navigator
       initialRouteName="Information"
       screenOptions={{
         activeTintColor: "darkred",
         headerRight: () => (
-              <Button
-                title="HOME"
-                color="#000"
-                onPress={goHome}
-              />
-            )
+          <View style={{ marginRight: 10 }}>
+            <Button title="HOME" color="#000" onPress={goHome} />
+          </View>
+        ),
       }}
     >
       <Tab.Screen
@@ -79,14 +77,13 @@ const Detail = ({ route }) => {
           ),
         }}
       >
-
-        {() => 
-          isLoading ? <ActivityIndicator size={large} color="#000" /> 
-          : <Comics 
-          listComics={data?.comics?.items}
-          />
+        {() =>
+          isLoading ? (
+            <ActivityIndicator size={large} color="#000" />
+          ) : (
+            <Comics listComics={data?.comics?.items} />
+          )
         }
-
       </Tab.Screen>
     </Tab.Navigator>
   );

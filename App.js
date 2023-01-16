@@ -17,12 +17,21 @@ export default function App() {
         <Stack.Screen name="Home" component={Home}
         options={{
           headerStyle: {
-            backgroundColor: "#1b1b1b",
+            backgroundColor: "#313131",
           },
           headerTitle: () => <LogoTitle />,
         }}
         />
-        <Stack.Screen name="Detail" component={Detail} />
+        <Stack.Screen name="Detail" component={Detail}
+        options={{
+          headerStyle: {
+            backgroundColor: "#313131",
+          },
+          headerTitleStyle: {
+            color: "#fff"
+          }
+        }}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   )
