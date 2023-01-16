@@ -28,7 +28,6 @@ const Detail = ({ route }) => {
       .finally(() => setLoading(false));
   }, []);
 
-  console.log("detail", data.name);
 
   return (
     <Tab.Navigator
@@ -40,6 +39,7 @@ const Detail = ({ route }) => {
       <Tab.Screen
         name="Information"
         options={{
+          title: `${data.name}}`,
           tabBarIcon: ({ color, size }) => (
             <MaterialComunityIcons
               name="information-circle"

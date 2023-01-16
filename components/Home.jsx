@@ -28,14 +28,14 @@ const Home = () => {
 
   const searchCharacter = () => {
     if (search) {
-      setLoading(true);
+      // setLoading(true);
       axios.get(`${baseURL}/v1/public/characters?nameStartsWith=${search}&ts=${ts}&apikey=${apikey}&hash=${hash}`)
         .then((response) => setData(response.data.data.results))
+
         .catch((error) => console.error(error))
         .finally(() => setLoading(false));
     }
   };
-
 
   return (
     <ScrollView>
@@ -49,7 +49,7 @@ const Home = () => {
             placeholder="Busca a tu personaje"
             onChangeText={(value) => setSearch(value)}
             value={search}
-            // onKeyPress={searchCharacter}
+            onKeyPress={searchCharacter}
             onSubmitEditing={searchCharacter}
           />
           <FlatList
